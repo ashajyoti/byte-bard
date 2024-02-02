@@ -1,8 +1,9 @@
+import {Button} from '@nextui-org/button'; 
 
-export default function Home() {
+export default function Page() {
   return (
-    <main>
-      Welcome to Byte Bard
-    </main>
-  );
+    <div>
+      <Button>Click me</Button>
+    </div>
+  )
 }
