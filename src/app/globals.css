@@ -69,11 +69,15 @@ nav header.max-w-\[1024px\] {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  height: 50vh;
+  height: 100vh;
 }
 .loader {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+.blog-content {
+  margin: 30px 30px 10px auto;
+  width: 300px;
 }

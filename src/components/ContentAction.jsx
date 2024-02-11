@@ -8,7 +8,7 @@ export default function ContentAction({eachDoc}) {
     const { user } = useAuthContext();
 
     return (
-        <div>
+        <div className="flex justify-between items-end blog-content ">
 
             {(user?.uid === eachDoc.data.userId) ?
                 <>

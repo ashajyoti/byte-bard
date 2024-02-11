@@ -11,7 +11,7 @@ export default  function DeleteButton(id) {
     }
   return (
     <div>
-        <Button onClick={handleDeleteClick}>delete</Button>
+        <Button onClick={handleDeleteClick} className='font-medium'>Delete</Button>
     </div>
   )
 }

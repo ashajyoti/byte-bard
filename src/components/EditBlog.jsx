@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect } from "react";
-import { Input, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import { Input, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Textarea } from "@nextui-org/react";
 import { useState } from 'react';
 import editBlog from "@/firebase/firestore/editData";
 
@@ -24,7 +24,7 @@ export default function UpdateBlog({id, blogTitle, blogDesc}) {
         <>
             {
                 <div>
-                    <Button onPress={onOpen}>edit Modal</Button>
+                    <Button onPress={onOpen} className="font-medium">Click to Edit</Button>
                     <Modal
                         backdrop="opaque"
                         isOpen={isOpen}
@@ -33,14 +33,14 @@ export default function UpdateBlog({id, blogTitle, blogDesc}) {
                             backdrop: "bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-20"
                         }}
                     >
-                        <ModalContent>
+                        <ModalContent className="max-w-4xl">
                             {(onClose) => (
                                 <>
-                                    <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+                                    <ModalHeader className="flex flex-col gap-1">Edit & have fun</ModalHeader>
                                     <ModalBody>
-                                        <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                                            <Input type="text" label='title' value={title} onChange={(e) => setTitle(e.target.value)} />
-                                            <Input type="text" label="description" value={desc} onChange={(e) => setDesc(e.target.value)} />
+                                        <div className="flex w-full flex-wrap md:flex-nowrap gap-4 flex-col">
+                                            <Textarea type="text" label='Title' value={title} onChange={(e) => setTitle(e.target.value)} />
+                                            <Textarea type="text" label="Description" value={desc} onChange={(e) => setDesc(e.target.value)} />
                                         </div>
                                     </ModalBody>
                                     <ModalFooter>

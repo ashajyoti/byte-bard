@@ -13,7 +13,7 @@ export default async function Page() {
     <div>
    <Header />
    <HeroBanner />
-   <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
+   <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 mt-6 justify-items-center items-center">
       {document.map((item, index) => (
         <Link href={`/blog/${item.data.slug}`}>
           <Card shadow="sm" key={index} className="max-w-[300px]" >

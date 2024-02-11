@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import { useAuthContext } from '@/context/AuthContext';
-import { Input, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import { Input, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Textarea } from "@nextui-org/react";
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -34,8 +34,8 @@ export default function createBlog() {
     return (
         <>
             {user ?
-                <div>
-                    <Button onPress={onOpen}>Create Your own Blog</Button>
+                <div className="flex justify-end my-6 mr-6">
+                    <Button onPress={onOpen} className="font-medium">Create Your own Blog</Button>
                     <Modal
                         backdrop="opaque"
                         isOpen={isOpen}
@@ -44,17 +44,17 @@ export default function createBlog() {
                             backdrop: "bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-20"
                         }}
                     >
-                        <ModalContent>
+                        <ModalContent className="max-w-3xl">
                             {(onClose) => (
                                 <>
-                                    <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+                                    <ModalHeader className="flex flex-col gap-1">Create and Publish</ModalHeader>
                                     <ModalBody>
-                                        <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                                            <Input type="text" label='title' value={title} onChange={(e) => setTitle(e.target.value)} />
-                                            <Input type="text" label="description" value={desc} onChange={(e) => setDesc(e.target.value)} />
+                                        <div className="flex w-full flex-wrap md:flex-nowrap gap-4 flex-col">
+                                            <Textarea type="text" label='Title' value={title} onChange={(e) => setTitle(e.target.value)} />
+                                            <Textarea type="text" label="Description" value={desc} onChange={(e) => setDesc(e.target.value)} />
                                         </div>
                                     </ModalBody>
-                                    <ModalFooter>
+                                    <ModalFooter className="justify-center">
                                         <Button color="primary" onPress={onClose} onClick={createBlogHandler}>
                                             Publish
                                         </Button>

@@ -8,7 +8,7 @@ export default async function BlogList() {
   const response = await getAllDoument('blog')
   const document = response.documents
   return (
-    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
+    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 justify-items-center mt-4">
       {document.map((item, index) => (
         <Link href={`/blog/${item.data.slug}`}>
           <Card shadow="sm" key={index} className="max-w-[300px]" >
