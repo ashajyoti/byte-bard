@@ -5,6 +5,7 @@ import {
     getAuth,
 } from 'firebase/auth';
 import firebase_app from '@/firebase/firebaseConfig';
+import {Spinner} from "@nextui-org/react";
 
 const auth = getAuth(firebase_app);
 
@@ -21,7 +22,6 @@ export const AuthContextProvider = ({
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log('user',user);
                 setUser(user);
             } else {
                 setUser(null);
@@ -34,7 +34,7 @@ export const AuthContextProvider = ({
 
     return (
         <AuthContext.Provider value={{ user }}>
-            {loading ? <div>Loading...</div> : children}
+            {loading ?  <Spinner label="Loading..." color="secondary" className='loader' /> : children}
         </AuthContext.Provider>
     );
 };

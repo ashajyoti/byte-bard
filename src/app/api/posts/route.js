@@ -1,17 +1,8 @@
 import addData from "@/firebase/firestore/addData"
+import { v4 as uuidv4 } from 'uuid';
 
 export async function POST(req) {
    const values = await req.json();
-    // const res = await fetch('https://data.mongodb-api.com/...', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'API-Key': process.env.DATA_API_KEY,
-    //   },
-    //   body: JSON.stringify({ time: new Date().toISOString() }),
-    // })
-    const response = await addData('blog', 'posts', values)
-    // const data = await response.json()
-    console.log('res',response);
+    const response = await addData('blog', uuidv4(), values)
     return Response.json(null)
   }

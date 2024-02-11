@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from "react";
-import { Input, Button } from "@nextui-org/react";
+import { Input, Button, Link } from "@nextui-org/react";
 import { useRouter } from 'next/navigation';
 import signUp from "@/firebase/auth/signup";
 
@@ -19,8 +19,9 @@ export default function SignUpForm() {
         return router.push("/")
     }
     return (
-        <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-            <form onSubmit={handleSignUpForm}>
+        <div className="signin-page">
+            <form  className="form" onSubmit={handleSignUpForm}>
+            <div class="content">Sign Up</div>
                 <Input type="text" label="name" placeholder="Enter your name" value={name}
                     onChange={(e) => setName(e.target.value)} />
                 <Input type="email" label="Email" placeholder="Enter your email" value={email}
@@ -28,6 +29,9 @@ export default function SignUpForm() {
                 <Input type="password" label="Password" placeholder="Enter your password" value={password}
                     onChange={(e) => setPassword(e.target.value)} />
                 <Button color="primary" type="submit">Sign Up</Button>
+                <p>
+                    Already have a account? <Link href="/login">Sign In</Link>
+                </p>
             </form>
         </div>
     );

@@ -34,3 +34,46 @@ body {
 nav header.max-w-\[1024px\] {
   max-width: none;
 }
+
+.login-page, .signin-page {
+  padding: 8rem;
+  display: flex;
+}
+.login-page .form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid grey;
+  padding: 1.2rem;
+}
+.signin-page .form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid grey;
+  padding: 1.2rem;
+}
+.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 50vh;
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

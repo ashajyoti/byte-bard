@@ -1,41 +1,30 @@
 'use client'
-import React from "react";
-import { useAuthContext } from '@/context/AuthContext';
+import React, { useEffect } from "react";
 import { Input, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import editBlog from "@/firebase/firestore/editData";
 
-export async function fetchTodos(user, title, desc) {
-    const response = await fetch("http://localhost:3000/api/posts", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            id: uuidv4(),
-            title: title, description: desc, createdAt: new Date(),
-            image:"https://picsum.photos/200/300",
-            slug: title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""), userId: user.uid
-        })
-    });
-    return response.json()
+export async function fetchTodos(title, desc, id) {
+    const body = {
+        title: title, description: desc,
+        slug: title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")
+    }
+    const response = await editBlog(body, id);
 }
 
-export default function createBlog() {
-    const { user } = useAuthContext()
-    const [title, setTitle] = useState('');
-    const [desc, setDesc] = useState('');
+export default function UpdateBlog({id, blogTitle, blogDesc}) {
+    const [title, setTitle] = useState(blogTitle);
+    const [desc, setDesc] = useState(blogDesc);
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-    async function createBlogHandler() {
-        const data = await fetchTodos(user, title, desc)
-        setDesc('');
-        setTitle('');
+    
+    async function updateBlogHandler() {
+        const data = await fetchTodos(title, desc, id)
     }
     return (
         <>
-            {user ?
+            {
                 <div>
-                    <Button onPress={onOpen}>Create Your own Blog</Button>
+                    <Button onPress={onOpen}>edit Modal</Button>
                     <Modal
                         backdrop="opaque"
                         isOpen={isOpen}
@@ -55,8 +44,8 @@ export default function createBlog() {
                                         </div>
                                     </ModalBody>
                                     <ModalFooter>
-                                        <Button color="primary" onPress={onClose} onClick={createBlogHandler}>
-                                            Publish
+                                        <Button color="primary" onPress={onClose} onClick={updateBlogHandler}>
+                                            Save
                                         </Button>
                                     </ModalFooter>
                                 </>
@@ -64,7 +53,7 @@ export default function createBlog() {
                         </ModalContent>
                     </Modal>
 
-                </div> : <></>
+                </div>
 
             }
         </>
@@ -72,4 +61,3 @@ export default function createBlog() {
 
     )
 }
-

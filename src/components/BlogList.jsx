@@ -1,19 +1,14 @@
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import HeroBanner from '@/components/HeroBanner';
 import { getAllDoument } from "@/firebase/firestore/getData";
+import React from "react";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import Link from "next/link";
 
-export default async function Page() {
+export default async function BlogList() {
   const response = await getAllDoument('blog')
-  const document = response.documents.slice(0,4);
+  const document = response.documents
   return (
-    <div>
-   <Header />
-   <HeroBanner />
-   <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
+    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
       {document.map((item, index) => (
         <Link href={`/blog/${item.data.slug}`}>
           <Card shadow="sm" key={index} className="max-w-[300px]" >
@@ -35,7 +30,5 @@ export default async function Page() {
         </Link>
       ))}
     </div>
-   <Footer />
-    </div>
-  )
-}
+  );
+};
